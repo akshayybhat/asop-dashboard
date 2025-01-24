@@ -1,0 +1,76 @@
+<mvc:View controllerName="asopv1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m" xmlns="sap.viz.ui5.controls" xmlns:core="sap.ui.core" xmlns:viz="sap.viz.ui5.data">
+    <m:Page id="page" title="{i18n>title}" showHeader="false">
+        
+        <!-- Pie chart  -->
+        <!-- <VizFrame id="idPieChart" width="100%" height="400px" vizType="pie">
+            <dataset>
+                <viz:FlattenedDataset data="{/PieChartData}">
+                    <viz:dimensions>
+                    <viz:DimensionDefinition name="Category" value="{Category}" />
+                    </viz:dimensions>
+                    <viz:measures>
+                    <viz:MeasureDefinition name="Value" value="{Value}" />
+                    </viz:measures>
+                </viz:FlattenedDataset>
+            </dataset>
+    <feeds>
+      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="size" type="Measure" values="Value" />
+      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="color" type="Dimension" values="Category" />
+    </feeds>
+  </VizFrame> -->
+
+    <!-- bar chart -->
+        <!-- <VizFrame id="idBarChart" width="100%" height="400px" vizType="bar">
+            <dataset>
+                <viz:FlattenedDataset data="{/OpenOrders}">
+                    <viz:dimensions>
+                    <viz:DimensionDefinition name="AgeGroup" value="{AgeGroup}" />
+                    </viz:dimensions>
+                    <viz:measures>
+                    <viz:MeasureDefinition name="Orders" value="{Orders}" />
+                    </viz:measures>
+                </viz:FlattenedDataset>
+            </dataset>
+            <feeds>
+                <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Orders" />
+                <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="AgeGroup" />
+            </feeds>
+        </VizFrame> -->
+        <VizFrame id="idPieChart" width="100%" height="400px" vizType="pie">
+    <dataset>
+      <viz:FlattenedDataset data="{/PieChartData}">
+        <viz:dimensions>
+          <viz:DimensionDefinition name="Category" value="{Category}" />
+        </viz:dimensions>
+        <viz:measures>
+          <viz:MeasureDefinition name="Value" value="{Value}" />
+        </viz:measures>
+      </viz:FlattenedDataset>
+    </dataset>
+    <feeds>
+      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="size" type="Measure" values="Value" />
+      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="color" type="Dimension" values="Category" />
+    </feeds>
+  </VizFrame>
+
+  <!-- Bar Chart -->
+  <VizFrame id="idBarChart" width="100%" height="400px" vizType="bar">
+    <dataset>
+      <viz:FlattenedDataset data="{/OpenOrders}">
+        <viz:dimensions>
+          <viz:DimensionDefinition name="Age" value="{Age}" />
+        </viz:dimensions>
+        <viz:measures>
+          <viz:MeasureDefinition name="Orders" value="{Orders}" />
+        </viz:measures>
+      </viz:FlattenedDataset>
+    </dataset>
+    <feeds>
+      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Orders" />
+      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="Age" />
+    </feeds>
+  </VizFrame>
+    </m:Page>
+</mvc:View>
