@@ -2,7 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m" xmlns="sap.viz.ui5.controls" xmlns:core="sap.ui.core" xmlns:viz="sap.viz.ui5.data">
     <m:Page id="page" title="{i18n>title}" showHeader="false" xmlns:f="sap.f"
-	xmlns:card="sap.f.cards">
+	xmlns:card="sap.f.cards"  xmlns:fb="sap.ui.comp.filterbar">
         
         <!-- Pie chart  -->
         <m:HBox width="100%" renderType="Bare" justifyContent="SpaceBetween" alignItems="Center">
@@ -71,6 +71,83 @@
             </m:Panel>
 
         </m:HBox>
-    
+
+      <!-- filter and table -->
+
+       <f:DynamicPage headerExpanded="{/headerExpanded}" title="Dynamic Filter with Smart Table">
+           <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <m:Title text="Dynamic Filters and Smart Table" level="H1" />
+                </f:heading>
+                <f:expandedContent>
+                    <m:Label id="expandedLabel" text="Filters Applied" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <m:Label id="snappedLabel" text="Filters Active" />
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+       
+      <f:header>
+             <f:DynamicPageHeader>
+                <fb:FilterBar id="filterbar"
+                    persistencyKey="myPersistencyKey"
+                    useToolbar="false"
+                    search=".onSearch"
+                    filterChange=".onFilterChange">
+                    <fb:filterGroupItems>
+                        <!-- Purchase Order Type -->
+                        <fb:FilterGroupItem name="PurchaseOrderType" label="Purchase Order Type" groupName="Main" visibleInFilterBar="true">
+                            <fb:control>
+                                <m:ComboBox items="{path: '/PurchaseOrderTypes'}" selectionChange=".onSelectionChange">
+                                    <core:Item key="{key}" text="{text}" />
+                                </m:ComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <!-- ASOP Doc Status -->
+                        <fb:FilterGroupItem name="ASOPDocStatus" label="ASOP Doc Status" groupName="Main" visibleInFilterBar="true">
+                            <fb:control>
+                                <m:ComboBox items="{path: '/ASOPDocStatuses'}" selectionChange=".onSelectionChange">
+                                    <core:Item key="{key}" text="{text}" />
+                                </m:ComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <!-- Sales Doc Type -->
+                        <fb:FilterGroupItem name="SalesDocType" label="Sales Doc Type" groupName="Main" visibleInFilterBar="true">
+                            <fb:control>
+                                <m:ComboBox items="{path: '/SalesDocTypes'}" selectionChange=".onSelectionChange">
+                                    <core:Item key="{key}" text="{text}" />
+                                </m:ComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <!-- Sold-to Party -->
+                        <fb:FilterGroupItem name="SoldToParty" label="Sold-to Party" groupName="Main" visibleInFilterBar="true">
+                            <fb:control>
+                                <m:Input valueHelpRequest=".onValueHelpRequest" placeholder="Enter Sold-to Party" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <!-- ASOP Doc Date -->
+                        <fb:FilterGroupItem name="ASOPDocDate" label="ASOP Doc Date" groupName="Main" visibleInFilterBar="true">
+                            <fb:control>
+                                <m:DatePicker valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <!-- Creation Date -->
+                        <fb:FilterGroupItem name="CreationDate" label="Creation Date" groupName="Main" visibleInFilterBar="true">
+                            <fb:control>
+                                <m:DatePicker valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                    </fb:filterGroupItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+        </f:DynamicPage>
     </m:Page>
 </mvc:View>
