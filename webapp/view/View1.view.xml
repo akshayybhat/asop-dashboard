@@ -1,44 +1,76 @@
 <mvc:View controllerName="asopv1.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m" xmlns="sap.viz.ui5.controls" xmlns:core="sap.ui.core" xmlns:viz="sap.viz.ui5.data">
-    <m:Page id="page" title="{i18n>title}" showHeader="false">
+    <m:Page id="page" title="{i18n>title}" showHeader="false" xmlns:f="sap.f"
+	xmlns:card="sap.f.cards">
         
         <!-- Pie chart  -->
         <m:HBox width="100%" renderType="Bare" justifyContent="SpaceBetween" alignItems="Center">
-        <VizFrame id="idPieChart" width="45%" height="350px" vizType="pie">
-    <dataset>
-      <viz:FlattenedDataset data="{/PieChartData}">
-        <viz:dimensions>
-          <viz:DimensionDefinition name="Category" value="{Category}" />
-        </viz:dimensions>
-        <viz:measures>
-          <viz:MeasureDefinition name="Value" value="{Value}" />
-        </viz:measures>
-      </viz:FlattenedDataset>
-    </dataset>
-    <feeds>
-      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="size" type="Measure" values="Value" />
-      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="color" type="Dimension" values="Category" />
-    </feeds>
-  </VizFrame>
+
+            <!-- Panel for Pie Chart -->
+            <m:Panel class="sapUiSmallMargin" width="40%" >
+                <VizFrame id="idPieChart" width="100%" height="350px" vizType="pie">
+                    <dataset>
+                        <viz:FlattenedDataset data="{/PieChartData}">
+                            <viz:dimensions>
+                                <viz:DimensionDefinition name="Category" value="{Category}" />
+                            </viz:dimensions>
+                            <viz:measures>
+                                <viz:MeasureDefinition name="Value" value="{Value}" />
+                            </viz:measures>
+                        </viz:FlattenedDataset>
+                    </dataset>
+                    <feeds>
+                        <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="size" type="Measure"
+                            values="Value" />
+                        <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="color" type="Dimension"
+                            values="Category" />
+                    </feeds>
+                </VizFrame>
+            </m:Panel>
+
+            <!-- Panel for Bar Chart -->
+            <m:Panel class="sapUiSmallMargin" width="40%">
+                <VizFrame id="idBarChart" width="100%" height="350px" vizType="bar">
+                    <dataset>
+                        <viz:FlattenedDataset data="{/OpenOrders}">
+                            <viz:dimensions>
+                                <viz:DimensionDefinition name="Age" value="{Age}" />
+                            </viz:dimensions>
+                            <viz:measures>
+                                <viz:MeasureDefinition name="Orders" value="{Orders}" />
+                            </viz:measures>
+                        </viz:FlattenedDataset>
+                    </dataset>
+                    <feeds>
+                        <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure"
+                            values="Orders" />
+                        <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension"
+                            values="Age" />
+                    </feeds>
+                </VizFrame>
+            </m:Panel>
+
+            <!-- Panel for Analysis Card -->
+            <m:Panel  class="sapUiSmallMargin"  headerText="Analysis Of Order Recieved"  width="30%">
+                <!-- <f:Card>
+                    <f:header>
+                        <card:Header title="Analysis Of Order Recieved" />
+                    </f:header> -->
+                    <!-- <f:content> -->
+                        <m:List items="{/OrderAnalysis}" showSeparators="None">
+                            <m:CustomListItem>
+                                <m:HBox justifyContent="SpaceAround" class="sapUiTinyMarginBottom">
+                                    <m:Text text="{Value}" class="sapUiSmallMarginEnd" />
+                                    <m:Text text="{Category}" />
+                                </m:HBox>
+                            </m:CustomListItem>
+                        </m:List>
+                    <!-- </f:content> -->
+                <!-- </f:Card> -->
+            </m:Panel>
+
+        </m:HBox>
     
-  <!-- Bar Chart -->
-  <VizFrame id="idBarChart" width="40%" height="350px" vizType="bar">
-    <dataset>
-      <viz:FlattenedDataset data="{/OpenOrders}">
-        <viz:dimensions>
-          <viz:DimensionDefinition name="Age" value="{Age}" />
-        </viz:dimensions>
-        <viz:measures>
-          <viz:MeasureDefinition name="Orders" value="{Orders}" />
-        </viz:measures>
-      </viz:FlattenedDataset>
-    </dataset>
-    <feeds>
-      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Orders" />
-      <common:FeedItem xmlns:common="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="Age" />
-    </feeds>
-  </VizFrame>
-  </m:HBox>
     </m:Page>
 </mvc:View>

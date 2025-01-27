@@ -20,6 +20,12 @@ sap.ui.define([
                     { Age: "11-15 Days", Orders: 16 },
                     { Age: "15+ Days", Orders: 14 },
                     { Age: "Undefined", Orders: 0 }
+                ],
+                OrderAnalysis: [
+                    { Category: "Large Cans", Value: 100 },
+                    { Category: "Small Cans", Value: 95 },
+                    { Category: "Ingredients", Value: 56 },
+                    { Category: "Shipping", Value: 42 }
                 ]
             };
             var oModel = new JSONModel(oData);
